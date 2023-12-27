@@ -60,7 +60,7 @@ const Login = ({ navigation }) => {
             <View class="bottom-0 h-full">
                 <Image source={require('../../assets/images/banner3_login.png')} class="m-auto bottom-0 absolute " alt="" />
             </View>
-            <Box className="ion-padding mt-[60px] absolute top-0 left-0 w-full h-full">
+            <View className="ion-padding mx-6 mt-[60px] absolute top-0 left-0 w-full h-full">
                 <View class="mb-5 pb-5 logo ">
                     <Image source={require('../../assets/images/logo2.png')} class="m-auto" alt="" />
                 </View>
@@ -73,7 +73,7 @@ const Login = ({ navigation }) => {
                     md: "25%"
                 }} className="bg-gray-50 border border-[#F78F43] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " onChangeText={changePassword} placeholder="Password" />
                 <Button className="w-full mt-6 text-white bg-[#F78F43] focus:text-[#F78F43] rounded-xl" size='md' text="submit" onPress={submitHandler}>Login</Button>
-            </Box>
+            </View>
 
         </Stack>
     );
