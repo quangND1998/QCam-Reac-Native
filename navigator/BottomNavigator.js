@@ -1,17 +1,27 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { EmojiHappy, Home, User, More, DocumentText } from 'iconsax-react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import HomeScreen from '../components/Home/Home';
 import OrderScreen from '../components/Order/Index';
 import UserScreen from '../components/User/Index';
 import AddScreen from '../components/Add/Index';
 const Tab = createBottomTabNavigator();
+const ImageHeader = props => (
+    <View style={{ backgroundColor: '#eee' }}>
+      <Image
+        style={StyleSheet.absoluteFill}
+        source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/3/36/Hopetoun_falls.jpg' }}
+      />
+    </View>
+);
 
 const BottomNavigator = () => {
     return (
         <Tab.Navigator
             initialRouteName="Home"
             backBehavior="history"
+            style={styles.tabcontain}
             screenOptions={{
                 tabBarActiveTintColor: '#F78F43',
             }}
@@ -23,7 +33,7 @@ const BottomNavigator = () => {
                     headerShown: false,
                     tabBarLabel: 'Home',
                     tabBarIcon: ({ color, size }) => (
-                        <Home color="#F78F43" variant="Outline" size={25} />
+                        <Image source={require('../assets/icon/home.png')} />
                     ),
                 }}
             />
@@ -33,7 +43,18 @@ const BottomNavigator = () => {
                 options={{
                     tabBarLabel: 'Đơn hàng',
                     tabBarIcon: ({ color, size }) => (
-                        <DocumentText color="#F78F43" variant="Outline" size={25} />
+                        <Image source={require('../assets/icon/order.png')} />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="checkin"
+                component={UserScreen}
+                options={{
+                    headerShown: false,
+                    tabBarLabel: 'Check In',
+                    tabBarIcon: ({ color, size }) => (
+                        <Image source={require('../assets/icon/qrcode.png')} />
                     ),
                 }}
             />
@@ -44,7 +65,7 @@ const BottomNavigator = () => {
                     headerShown: false,
                     tabBarLabel: 'Tài khoản',
                     tabBarIcon: ({ color, size }) => (
-                        <User color="#F78F43" variant="Outline" size={25} />
+                        <Image source={require('../assets/icon/user.png')} />
                     ),
                 }}
             />
@@ -55,7 +76,7 @@ const BottomNavigator = () => {
                     headerShown: false,
                     tabBarLabel: 'Thêm',
                     tabBarIcon: ({ color, size }) => (
-                        <More color="#F78F43" variant="Outline" size={25} />
+                        <Image source={require('../assets/icon/more.png')} />
                     ),
                 }}
             />
@@ -63,4 +84,10 @@ const BottomNavigator = () => {
     );
 
 }
+const styles = StyleSheet.create({
+    tabcontain:{
+        padding : '10px',
+        margin: '10px'
+    }
+  });
 export default BottomNavigator;
