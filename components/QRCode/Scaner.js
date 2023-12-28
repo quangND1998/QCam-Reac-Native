@@ -4,26 +4,23 @@ import { StyleSheet, TouchableOpacity, Linking, Keyboard, View } from 'react-nat
 import { Center, Container, Heading, Button, Text, Box, Stack, Input, SearchBar, Icon, Spacer, ZStack, Image, HStack, VStack, Pressable, FlatList, Avatar, useToast } from 'native-base';
 import { useDispatch, useSelector } from 'react-redux'
 import { EmojiHappy } from 'iconsax-react-native';
-import { Camera, useCameraDevice, useCodeScanner, PermissionError, CameraPermissionRequestResult } from 'react-native-vision-camera';
+import { Camera, useCameraDevices, } from 'react-native-vision-camera';
 LogBox.ignoreLogs(["EventEmitter.removeListener"]);
 const ScanScreen = ({ navigation, route }) => {
     // const { hasPermission, requestPermission } = CameraPermissionRequestResult()
-    const device = useCameraDevice('back')
+    const devices = useCameraDevices('wide-angle-camera')
+    const device = devices.back
     useEffect(() => {
         // requestPermission()
     }, [])
-    if (device == null) return <View><Text>NoCameraDeviceError</Text></View>
-    const codeScanner = useCodeScanner({
-        codeTypes: ['qr', 'ean-13'],
-        onCodeScanned: (codes) => {
-            console.log(`Scanned ${codes.length} codes!`)
-        }
-    })
-
-    return (<Camera
-        device={device}
-        isActive={true} codeScanner={codeScanner} />
-    );
+    if (device == null) return <View />
+    return (
+        <Camera
+            style={StyleSheet.absoluteFill}
+            device={device}
+            isActive={true}
+        />
+    )
 }
 
 
