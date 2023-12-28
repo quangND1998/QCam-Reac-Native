@@ -5,6 +5,7 @@ import HomeScreen from '../components/Home/Home';
 import OrderScreen from '../components/Order/Index';
 import UserScreen from '../components/User/Index';
 import AddScreen from '../components/Add/Index';
+import ScanScreen from '../components/QRCode/Scaner';
 const Tab = createBottomTabNavigator();
 
 const BottomNavigator = () => {
@@ -32,6 +33,16 @@ const BottomNavigator = () => {
                 component={OrderScreen}
                 options={{
                     tabBarLabel: 'Đơn hàng',
+                    tabBarIcon: ({ color, size }) => (
+                        <DocumentText color="#F78F43" variant="Outline" size={25} />
+                    ),
+                }}
+            />
+            <Tab.Screen
+                name="Scan"
+                component={ScanScreen}
+                options={{
+                    tabBarLabel: 'Scan',
                     tabBarIcon: ({ color, size }) => (
                         <DocumentText color="#F78F43" variant="Outline" size={25} />
                     ),

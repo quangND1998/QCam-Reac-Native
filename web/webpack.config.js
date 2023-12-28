@@ -9,7 +9,7 @@ const appDirectory = path.resolve(__dirname, '../');
 // errors. To fix this webpack can be configured to compile to the necessary
 // `node_module`.
 const babelLoaderConfiguration = {
-    test: /\.js$|jsx/,
+    test: /\.(js|jsx)$/,
     // Add every directory that needs to be compiled by Babel during the build.
     include: [
         path.resolve(appDirectory, 'index.web.js'),

@@ -1,6 +1,7 @@
 /**
  * @format
  */
+import 'react-native-reanimated'
 import React, { useRef, useState, useEffect } from 'react';
 import { AppRegistry } from 'react-native';
 import App from './App';
