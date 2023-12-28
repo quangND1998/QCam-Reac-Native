@@ -7,22 +7,21 @@ import { StyleSheet, TouchableOpacity, Linking, Keyboard, View, ScrollView, Refr
 import { Center, Container, Heading, Button, Text, Box, Stack, Input, SearchBar, Icon, Spacer, ZStack, Image, HStack, VStack, Pressable, FlatList, Avatar, useToast } from 'native-base';
 import { useDispatch, useSelector } from 'react-redux'
 LogBox.ignoreLogs(["EventEmitter.removeListener"]);
-import Payoo from '../../payoo';
-import { PaymentService } from '../../common/payment/paymentService';
-import { getNews } from '../../store/actions/new';
-import { getActivity } from '../../store/actions/new';
+import Payoo from '../../payoo.js';
+import { PaymentService } from '../../common/payment/paymentService.js';
+import { getNews } from '../../store/actions/new.js';
+import { getActivity } from '../../store/actions/new.js';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Slides from '../../data/index.js';
 import SlideItem from './SlideItem.js';
 const merchantId = "11931"
-const NewSwiper = ({ navigation, route }) => {
+const NewActivity = ({ navigation, route }) => {
     const envDevelopment = 0;
     const envProduction = 1;
     const langVietNam = 0;
     const langEnglish = 1;
     const cashAmount = 2020000;
     const dispatch = useDispatch();
-    const news = useSelector(state => state.new.news);
     const activity = useSelector(state => state.new.activitys);
     const [refreshing, setRefreshing] = React.useState(false);
     const [index, setIndex] = useState(0);
@@ -32,7 +31,7 @@ const NewSwiper = ({ navigation, route }) => {
         fetchNews();
     }, []);
     const fetchNews = async () => {
-        dispatch(getNews())
+        dispatch(getActivity())
     }
 
     const onRefresh = React.useCallback(() => {
@@ -65,10 +64,10 @@ const NewSwiper = ({ navigation, route }) => {
       }).current;
     return (
         <View >
-            {news ?
+            {activity ?
             <FlatList
-                data={news.data}
-                renderItem={({item}) => <SlideItem item={item} navigation={navigation}/>}
+                data={activity.data}
+                renderItem={({item}) => <SlideItem item={item} />}
                 horizontal
                 pagingEnabled
                 snapToAlignment="center"
@@ -84,4 +83,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default NewSwiper;
+export default NewActivity;

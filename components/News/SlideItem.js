@@ -6,42 +6,50 @@ import {
     Dimensions,
     Animated,
     Easing,
+    TouchableWithoutFeedback,
+    TouchableOpacity
   } from 'react-native';
   import React from 'react';
-  
   const {width, height} = Dimensions.get('screen');
   
-  const SlideItem = ({item}) => {
+  const SlideItem = ({item, navigation}) => {
+    console.log(navigation);
     const translateYImage = new Animated.Value(40);
-  
+    const handlerDetail = () => {
+      console.log(item.id);
+      console.log(navigation);
+      navigation.navigate('newDetail', {
+        itemId: item.id,
+        // otherParam: 'anything you want here',
+      });
+    }
     Animated.timing(translateYImage, {
       toValue: 0,
       duration: 1000,
       useNativeDriver: true,
       easing: Easing.bounce,
     }).start();
-  
     return (
-      <View style={styles.container}>
-        <Animated.Image
-         className=" w-full object-cover rounded-lg"
-          source= {{ uri: item.images[0]?.original_url }}
+      <TouchableOpacity  onPress={ handlerDetail } >
+        <View style={styles.container}  >
+          <Animated.Image
+          className=" w-full object-cover rounded-lg"
+            source= {{ uri: item.images[0]?.original_url }}
 
-          style={[
-            styles.image
-          ]}
-        />
-  
-        <View style={styles.content}>
-          <Text numberOfLines={3} className="text-sm text-gray-700 px-1 my-1 font-base clamp three-lines" 
-          style={styles.description}>{item.short_description}</Text>
+            style={[
+              styles.image
+            ]}
+          />
+          <View style={styles.content}>
+            <Text numberOfLines={3} className="text-sm text-gray-700 px-1 my-1 font-base clamp three-lines" 
+            style={styles.description}>{item.short_description}</Text>
+          </View>
         </View>
-      </View>
+       </TouchableOpacity>
     );
   };
-  
-  export default SlideItem;
-  
+export default SlideItem;
+
   const styles = StyleSheet.create({
     container: {
       width: width/2.5,

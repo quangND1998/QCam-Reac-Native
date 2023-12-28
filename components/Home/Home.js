@@ -174,11 +174,11 @@ const HomeScreen = ({ navigation, route }) => {
                     </Box>
                     <Box className="my-5 px-2">
                         <Text className="font-bold text-xl">Tin tức chung</Text>
-                        <NewSwiper />
+                        <NewSwiper navigation={navigation}/>
                     </Box>
                     <Box className="my-5 px-2">
                         <Text className="font-bold text-xl">Hoạt động trang trại</Text>
-                        <NewActivity />
+                        <NewActivity  navigation={navigation}/>
                     </Box>
                 </Box>
 

@@ -4,7 +4,9 @@ import { StyleSheet, TouchableOpacity, Linking, Keyboard, View, ScrollView, Refr
     ImageBackground,   Dimensions,
     Animated,
     Easing, } from 'react-native';
-import { Center, Container, Heading, Button, Text, Box, Stack, Input, SearchBar, Icon, Spacer, ZStack, Image, HStack, VStack, Pressable, FlatList, Avatar, useToast } from 'native-base';
+import { Center, Container, Heading, Button, Text, Box, Stack, Input, SearchBar, Icon, Spacer, ZStack, Image, HStack, 
+  VStack, Pressable, FlatList, Avatar, useToast, TouchableWithoutFeedback
+} from 'native-base';
 import { useDispatch, useSelector } from 'react-redux'
 LogBox.ignoreLogs(["EventEmitter.removeListener"]);
 import Payoo from '../../payoo.js';
@@ -67,7 +69,7 @@ const NewActivity = ({ navigation, route }) => {
             {activity ?
             <FlatList
                 data={activity.data}
-                renderItem={({item}) => <SlideItem item={item} />}
+                renderItem={({item}) => <SlideItem item={item}  navigation={navigation}/>}
                 horizontal
                 pagingEnabled
                 snapToAlignment="center"
